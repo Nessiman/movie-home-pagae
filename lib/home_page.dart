@@ -3,18 +3,13 @@ import 'model/Movies.dart';
 import './MovieCard.dart';
 import './DetailPage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Movie List."), centerTitle: true),
+      appBar: AppBar(title: Text("Movie List"), centerTitle: true),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -25,16 +20,14 @@ class _HomePageState extends State<HomePage> {
                   builder: (context, constraints) {
                     double width = constraints.maxWidth;
                     int crossAxisCount;
-
-                    // 🧩 Breakpoint lebih smooth biar tampilannya proporsional
                     if (width <= 500) {
-                      crossAxisCount = 2; // Mobile kecil
+                      crossAxisCount = 2;
                     } else if (width <= 800) {
-                      crossAxisCount = 3; // Mobile besar / tablet kecil
+                      crossAxisCount = 3;
                     } else if (width <= 1200) {
-                      crossAxisCount = 5; // Tablet besar / laptop kecil
+                      crossAxisCount = 4;
                     } else {
-                      crossAxisCount = 8; // Desktop lebar
+                      crossAxisCount = 6;
                     }
 
                     return GridView.builder(
@@ -53,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailPage(movie: movie),
+                                builder: (context) => DetailPage(movies: movie),
                               ),
                             );
                           },
